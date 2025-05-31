@@ -35,69 +35,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Form submission handling
-    const contactForm = document.getElementById('contactForm');
+    // Add email link hover effect
+    const emailLink = document.querySelector('.info-item a');
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            // Basic validation
-            if (!name || !email || !message) {
-                showFormMessage('Please fill in all fields', 'error');
-                return;
-            }
-            
-            if (!isValidEmail(email)) {
-                showFormMessage('Please enter a valid email address', 'error');
-                return;
-            }
-            
-            // In a real implementation, you would send this data to a server
-            // For now, we'll just show a success message
-            showFormMessage('Thank you for your message! We will get back to you soon.', 'success');
-            contactForm.reset();
+    if (emailLink) {
+        emailLink.addEventListener('mouseover', function() {
+            this.style.transition = 'color 0.3s ease';
         });
-    }
-
-    // Helper function to validate email
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-
-    // Helper function to show form messages
-    function showFormMessage(message, type) {
-        // Check if a message element already exists
-        let messageElement = document.querySelector('.form-message');
-        
-        // If not, create one
-        if (!messageElement) {
-            messageElement = document.createElement('div');
-            messageElement.className = 'form-message';
-            contactForm.appendChild(messageElement);
-        }
-        
-        // Set message content and style
-        messageElement.textContent = message;
-        messageElement.className = `form-message ${type}`;
-        
-        // Add styles based on message type
-        if (type === 'error') {
-            messageElement.style.color = '#e74c3c';
-        } else if (type === 'success') {
-            messageElement.style.color = '#2ecc71';
-        }
-        
-        // Remove the message after 5 seconds
-        setTimeout(() => {
-            messageElement.remove();
-        }, 5000);
     }
 
     // Animation on scroll

@@ -19,7 +19,7 @@ doubledynamics.ca/
 
 - Responsive design that works on all devices
 - Modern, clean UI with smooth animations
-- Contact form (frontend only, requires backend implementation)
+- Simple contact section with clickable email
 - Fast-loading static site
 
 ## Development
