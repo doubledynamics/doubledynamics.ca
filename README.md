@@ -2,29 +2,21 @@
 
 This is the static website for Double Dynamics (doubledynamics.ca).
 
-## Project Structure
+## Pages
 
-```
-doubledynamics.ca/
-├── css/
-│   └── styles.css
-├── img/
-├── js/
-│   └── main.js
-├── index.html
-└── README.md
-```
+The site lives in `docs/` (GitHub Pages). It uses the same look as Sound
+(sound.doubledynamics.ca): its colours copy `web/src/styles/theme.css` in the
+noise_removal repo, so change them there first and copy them here.
 
-## Features
+`privacy.html` and `terms.html` are linked from the Google sign-in consent
+screen: keep their addresses.
 
-- Responsive design that works on all devices
-- Modern, clean UI with smooth animations
-- Simple contact section with clickable email
-- Fast-loading static site
+The logo images in `docs/img/` and `docs/favicon.ico` are made from
+`logo_transparent.png` in the doubledynamics/logo repo.
 
 ## Development
 
-This is a simple static website built with HTML, CSS, and vanilla JavaScript. No build tools or frameworks are required to work on this project.
+This is a simple static website built with plain HTML and CSS. No build tools or frameworks are required to work on this project.
 
 ### Local Development
 
@@ -52,12 +44,6 @@ http-server
 
 To deploy this site, simply upload all files to your web hosting provider.
 
-## Customization
-
-- **Images**: Add your own images to the `img/` directory
-- **Colors**: Edit the CSS variables at the top of `css/styles.css` to change the color scheme
-- **Content**: Modify the text in `index.html` to update the website content
-
 ## License
 
-Copyright © 2025 Double Dynamics Tech Corp. All rights reserved.
+Copyright © 2026 Double Dynamics Tech Corp. All rights reserved.
