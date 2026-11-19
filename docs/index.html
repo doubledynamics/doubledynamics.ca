@@ -32,7 +32,6 @@
         <div class="page-width">
             <section class="intro">
                 <h1>Double Dynamics</h1>
-                <p>We build simple tools for people who make videos, podcasts and other recordings.</p>
             </section>
 
             <section class="product-card">
@@ -43,12 +42,33 @@
                 <a class="button" href="https://sound.doubledynamics.ca">Try Sound</a>
             </section>
 
-            <section class="text-block">
-                <h2>About</h2>
-                <p>Double Dynamics Tech Corp. is a small software company in North Vancouver, British Columbia, Canada. We keep our products easy to use, and we never train on the files you upload.</p>
-                <h2>Contact</h2>
-                <p>Write to <a href="mailto:info@doubledynamics.ca">info@doubledynamics.ca</a>.</p>
+            <section class="samples">
+                <h2>Listen for yourself</h2>
+                <p class="samples-note">Real noisy recordings, cleaned by Sound. Switch between Before and After while it plays.</p>
+                <div class="sample" data-before="audio/bus-before.mp3" data-after="audio/bus-after.mp3">
+                    <span class="sample-label">On a bus</span>
+                    <div class="sample-buttons">
+                        <button type="button" data-version="before" aria-pressed="false">Before</button>
+                        <button type="button" data-version="after" aria-pressed="false">After</button>
+                    </div>
+                </div>
+                <div class="sample" data-before="audio/cafe-before.mp3" data-after="audio/cafe-after.mp3">
+                    <span class="sample-label">In a cafe</span>
+                    <div class="sample-buttons">
+                        <button type="button" data-version="before" aria-pressed="false">Before</button>
+                        <button type="button" data-version="after" aria-pressed="false">After</button>
+                    </div>
+                </div>
+                <div class="sample" data-before="audio/psquare-before.mp3" data-after="audio/psquare-after.mp3">
+                    <span class="sample-label">In a public square</span>
+                    <div class="sample-buttons">
+                        <button type="button" data-version="before" aria-pressed="false">Before</button>
+                        <button type="button" data-version="after" aria-pressed="false">After</button>
+                    </div>
+                </div>
+                <p class="credit">Recordings from the Noisy speech database by C. Valentini-Botinhao, University of Edinburgh, <a href="https://doi.org/10.7488/ds/2117">CC BY 4.0</a>. Cleaned with Sound's DeepFilterNet3 method.</p>
             </section>
+
         </div>
     </main>
 
@@ -62,5 +82,7 @@
             </nav>
         </div>
     </footer>
+
+    <script src="js/samples.js"></script>
 </body>
 </html>

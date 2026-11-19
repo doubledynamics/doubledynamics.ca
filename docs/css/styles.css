@@ -77,7 +77,6 @@ h2 { font-size: 1.25rem; line-height: 1.75rem; margin: 2.5rem 0 0.75rem; }
 p, ul { margin: 0 0 1rem; }
 
 .intro { max-width: var(--text-width); padding: 2rem 0 1rem; }
-.intro p { color: var(--color-text-muted); font-size: 1.125rem; }
 
 .product-card {
   display: flex;
@@ -105,7 +104,37 @@ p, ul { margin: 0 0 1rem; }
 }
 .button:hover { background: var(--color-accent-hover); text-decoration: none; }
 
-.text-block { max-width: var(--text-width); }
+/* Before/After samples */
+.samples { margin-top: 2.5rem; }
+.samples-note { color: var(--color-text-muted); }
+.sample {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.sample-label { font-weight: 500; }
+.sample-buttons { display: flex; gap: 0.5rem; }
+.sample button {
+  min-width: 5.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+}
+.sample button:hover { border-color: var(--color-accent); }
+.sample button[aria-pressed="true"] {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+.credit { margin-top: 1rem; color: var(--color-text-muted); font-size: 0.75rem; }
 
 /* Privacy and Terms */
 .legal > * { max-width: var(--text-width); }
