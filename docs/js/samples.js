@@ -1,8 +1,8 @@
 // Before/After players: each sample has two audio files, and switching keeps the playback position.
-// The files are small, so each is downloaded whole first: that lets any web server allow jumping
-// to the same position in the other version.
+// The files are small, so each is downloaded whole when the page opens: that lets any web server
+// allow jumping to the same position in the other version, and a click can start playing at once.
 
-const audioPairs = new Map();
+const SECONDS_NEAR_THE_END = 0.25;
 
 async function audioFromWholeFile(url) {
   const response = await fetch(url);
@@ -18,10 +18,11 @@ async function downloadAudioPair(sample) {
   return { before, after };
 }
 
-function audioPairOf(sample) {
-  if (!audioPairs.has(sample)) audioPairs.set(sample, downloadAudioPair(sample));
-  return audioPairs.get(sample);
+function everySample() {
+  return [...document.querySelectorAll(".sample")];
 }
+
+const audioPairs = new Map(everySample().map((sample) => [sample, downloadAudioPair(sample)]));
 
 async function everyAudio() {
   const pairs = await Promise.all(audioPairs.values());
@@ -38,19 +39,18 @@ function playbackPositionOf(pair) {
   return pair.before.paused ? pair.after.currentTime : pair.before.currentTime;
 }
 
-function startPositionFor(audio, position) {
-  const reachedTheEnd = position >= audio.duration;
-  return reachedTheEnd ? 0 : position;
+function isAtOrNearTheEnd(audio, position) {
+  return position >= audio.duration - SECONDS_NEAR_THE_END;
+}
+
+function rewindPair(pair) {
+  pair.before.currentTime = 0;
+  pair.after.currentTime = 0;
 }
 
 function playFrom(audio, position) {
-  const seekAndPlay = () => {
-    audio.currentTime = startPositionFor(audio, position);
-    audio.play();
-  };
-  const lengthIsKnown = audio.readyState >= HTMLMediaElement.HAVE_METADATA;
-  if (lengthIsKnown) seekAndPlay();
-  else audio.addEventListener("loadedmetadata", seekAndPlay, { once: true });
+  audio.currentTime = isAtOrNearTheEnd(audio, position) ? 0 : position;
+  audio.play();
 }
 
 async function stopEverything() {
@@ -59,12 +59,15 @@ async function stopEverything() {
 }
 
 async function playVersionOfButton(button) {
-  const pair = await audioPairOf(button.closest(".sample"));
+  const pair = await audioPairs.get(button.closest(".sample"));
   const chosenAudio = pair[button.dataset.version];
   if (!chosenAudio.paused) return stopEverything();
   const position = playbackPositionOf(pair);
   await stopEverything();
-  chosenAudio.onended = () => showPressedButton(null);
+  chosenAudio.onended = () => {
+    rewindPair(pair);
+    showPressedButton(null);
+  };
   playFrom(chosenAudio, position);
   showPressedButton(button);
 }
